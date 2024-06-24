@@ -250,7 +250,7 @@ namespace QueryCache
 				switch (reqPacket [4]) {
 				case 0x54: // Info Queries
 					infoQueries++;
-					if (lastInfoTime + TimeSpan.FromSeconds(5) <= DateTime.Now){
+					if (lastInfoTime + TimeSpan.FromSeconds(60) <= DateTime.Now){
 						// Update our cached values
 						if (UpdateCache(reqPacket[4]) > 0){break;};
 						// Successful update means we reset the timer
@@ -275,7 +275,7 @@ namespace QueryCache
 						}// We'll send the client the correct challenge code to use.
 						break;
 					}
-					if (lastPlayersTime + TimeSpan.FromSeconds (3) <= DateTime.Now) {
+					if (lastPlayersTime + TimeSpan.FromSeconds (60) <= DateTime.Now) {
 						if (UpdateCache(reqPacket[4]) > 0){break;};
 						lastPlayersTime = DateTime.Now;
 					}
@@ -298,7 +298,7 @@ namespace QueryCache
 						}
 						break;
 					}
-					if (lastRulesTime + TimeSpan.FromSeconds (10) <= DateTime.Now) {
+					if (lastRulesTime + TimeSpan.FromSeconds (60) <= DateTime.Now) {
 						if (UpdateCache(reqPacket[4]) > 0){break;};
 						lastRulesTime = DateTime.Now;
 					}
